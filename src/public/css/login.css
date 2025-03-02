@@ -1,0 +1,32 @@
+
+.container {
+    display: inline-block;
+    text-align: left;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.btn {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+.btn:hover {
+    background-color: #0056b3;
+}
+
+form.active {
+    display: block;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    display: none;
+}

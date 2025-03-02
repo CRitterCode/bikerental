@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="/css/login.css">
+<%- include("template/header") %>
+<body>
+<%- include("template/navigation") %>
+<div class="container">
+    <h2>Willkommen!</h2>
+    <p>Bitte wählen Sie aus:</p>
+    <button class="btn" id="loginBtn">Login</button>
+    <button class="btn" id="registerBtn">Register</button>
+
+    <!-- Login Form -->
+    <form id="loginForm" method="post" action="login" class="active">
+        <h3>Login</h3>
+        <% if (error) { %>
+            <span id='error' style="color: red;"><%= error %></span>
+        <% } %>
+        <br>
+        <input id="loginEmail" type="email" name="email" placeholder="Email" required><br><br>
+        <input id="loginPassword" type="password" name="password" placeholder="Password" required><br><br>
+        <button type="submit">Login</button>
+    </form>
+
+    <!-- Register Form -->
+    <form id="registerForm" method="post" action="register">
+        <h3>Register</h3>
+        <input type="email" id="registerEmail" name="email" placeholder="Email" required><br><br>
+        <input type="password" id="registerPassword" name="password" placeholder="Password" required><br><br>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password"
+               required><br><br>
+        <input type="text" id="username" name="username" placeholder="Username" required><br><br>
+        <button type="submit">Register</button>
+        <p id="passwordMismatch" style="color: red; display: none;">Passwords not equal</p>
+    </form>
+
+
+</div>
+
+<script>
+
+    document.getElementById("loginBtn").addEventListener("click", function () {
+        document.getElementById("loginForm").classList.add("active");
+        document.getElementById("registerForm").classList.remove("active");
+    });
+
+    document.getElementById("registerBtn").addEventListener("click", function () {
+        document.getElementById("registerForm").classList.add("active");
+        document.getElementById("loginForm").classList.remove("active");
+    });
+
+    // Form validation
+    document.getElementById("registerForm").addEventListener("submit", function (event) {
+        let password = document.getElementById("registerPassword")?.value;
+        let confirmPassword = document.getElementById("confirmPassword")?.value;
+        let passwordMismatchError = document.getElementById("passwordMismatch");
+
+        if (password !== confirmPassword) {
+            passwordMismatchError.style.display = "block";
+            event.preventDefault();
+        } else {
+            passwordMismatchError.style.display = "none";
+        }
+    });
+</script>
+</body>
+
+</html>
