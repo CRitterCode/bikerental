@@ -1,24 +1,12 @@
 <header class="main-header">
     <nav class="main-header-nav">
         <ul class="main-header-item-list">
-            <li id="liLogin" class="main-header-item"><a class="active" href="/auth/login">LogIn</a></li>
-            <li id="liLogOut" class="main-header-item"><a class="active" href="/auth/logout">LogOut</a></li>
+            <% if (user) { %>
+
+                <li id="liLogOut" class="main-header-item"><a class="active" href="/auth/logout">LogOut</a></li>
+            <% } else { %>
+                    <li id="liLogin" class="main-header-item"><a class="active" href="/auth/login">LogIn</a></li>
+            <% } %>
         </ul>
     </nav>
 </header>
-
-<script>
-    (function() {
-        let isAuth = document.cookie.split(";").find(cookie => cookie.trim().startsWith("isAuth="));
-        let login = document.getElementById("liLogin");
-        let logout = document.getElementById("liLogOut")
-
-        if (isAuth) {
-            login.style.display = "none";
-            logout.style.display = "block";
-        } else{
-            login.style.display = "block";
-            logout.style.display = "none";
-        }
-    })();
-</script>

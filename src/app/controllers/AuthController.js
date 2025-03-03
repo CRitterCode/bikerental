@@ -7,12 +7,11 @@ const authBcrypt = new AuthBcrypt()
 class AuthController {
     user = userModel.model
 
-    //TODO: url passt nicht wenn register form abgeschickt wird
     register(req, res) {
         this.user = req.body;
         userModel.getUserByEmail(this.user.email).then(user => {
             if (user){
-                res.render("login", { title: "login", error: "Email already exists" });
+                res.render("auth", { title: "login", error: "Email already exists" });
             } else{
 
                 authBcrypt.generateHash(this.user.password).then(hash => {
@@ -20,12 +19,12 @@ class AuthController {
                     userModel.create(this.user).then(_ => {
                         res.redirect(307, "/auth/login")
                     }).catch(err => {
-                        res.render("login", {title: "login", error: err})
+                        res.render("auth", {title: "login", error: err})
                     })
                 })
             }
         }).catch(err => {
-            res.render("login", {title: "login", error: err})
+            res.render("auth", {title: "login", error: err})
         })
 
     }
