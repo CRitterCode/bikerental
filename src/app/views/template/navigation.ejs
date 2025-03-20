@@ -2,11 +2,12 @@
     <nav class="main-header-nav">
         <ul class="main-header-item-list">
             <% if (user) { %>
-
                 <li id="liLogOut" class="main-header-item"><a class="active" href="/auth/logout">LogOut</a></li>
             <% } else { %>
                     <li id="liLogin" class="main-header-item"><a class="active" href="/auth/login">LogIn</a></li>
             <% } %>
         </ul>
     </nav>
+    <div id="error" style="color: red;"><%= error %>            </div>
+    <div id="info" style="color: red;"><%= info %>            </div>
 </header>

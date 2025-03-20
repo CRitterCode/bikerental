@@ -12,3 +12,5 @@ class PropertyHelper {
         return false;
     }
 }
+
+module.exports = PropertyHelper;

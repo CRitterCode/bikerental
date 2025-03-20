@@ -3,25 +3,22 @@ const rootDir = require('../util/path');
 const router = express.Router();
 const AuthController = require('../app/controllers/AuthController')
 
-const authHelper = require("../app/helpers/authHelper");
-let authController = new AuthController(rootDir);
-
-router.post("/login", (req, res, next) => {
-    authHelper.authenticateUser(req, res, next)
-});
-router.get("/login", (req, res, next) => {
-    res.render("auth", {title: "login", error: ""})
-});
+let authController = new AuthController();
 
 router.post("/register", (req, res, next) => {
     authController.register(req, res, next);
-    console.log(res.headersSent)
+});
+
+router.post("/login", (req, res, next) => {
+    authController.login(req, res, next);
+});
+
+router.get("/login", (req, res, next) => {
+    res.render("auth", {title: "Login"})
 });
 
 router.get("/logout", (req, res, next) => {
-    res.clearCookie(process.env.TOKEN);
-    res.locals.user = null;
-    res.redirect("/auth/login")
+    authController.logout(req,res,next);
 });
 
 module.exports = router;
